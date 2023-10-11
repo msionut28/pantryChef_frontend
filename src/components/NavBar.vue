@@ -26,12 +26,15 @@
         <a class="nav-link" href="#" @click="handleLogOut">Log Out</a>
     </li>
     <li v-if="!isLoggedIn" class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
-          <div class="dropdown-menu" aria-labelledby="dropdownId">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownId">
             <a class="dropdown-item" href="#"><GoogleLogin :callback="callback" /></a>
             <a class="dropdown-item" href="#">Username and Password</a>
-          </div>
-        </li>
+        </div>
+    </li>
+    <li v-if="showModal">
+        <ShowModal/>
+    </li>
     </ul>
 </div>
 <div class="d-flex my-2 my-lg-0" id="logo">
@@ -43,14 +46,14 @@
 </template>
 
 <script>
-import { decodeCredential, googleLogout } from 'vue3-google-login';
+import { decodeCredential } from 'vue3-google-login';
 import { mapState, mapActions } from 'vuex';
-
+import { handleLogin, handleLogout } from '../auth/auth';
+import ShowModal from './ShowModal.vue';
 export default {
     name: "NavBar",
     data: () => ({
         isInit: false,
-        // isLoggedIn: false,
         userName: '',
         lastLogin: ''
     }),
@@ -58,48 +61,23 @@ export default {
         if(this.$cookies.isKey('user_session')) {
             this.$store.dispatch('login')
             const userData = decodeCredential(this.$cookies.get('user_session'))
-            console.log(userData);
             this.userName = userData.given_name
         }
     },
     computed: {
-        ...mapState(['isLoggedIn'])
+        ...mapState(['isLoggedIn', 'showModal'])
     },
     methods: {
         ...mapActions(['login', 'logout']),
         callback: async function (response) {
-            this.$store.dispatch('login')
-            const userData = decodeCredential(response.credential)
-            const timestamp = Date.now()
-            const currentTime = new Date(timestamp)
-            console.log(userData);
-            this.userName = userData.given_name
-            this.$cookies.set('user_session', response.credential, 'isLoggedIn', this.isLoggedIn)
-            console.log(this.isLoggedIn);
-            this.lastLogin = currentTime
-            try{
-                const response = await fetch('http://localhost:4000/useradd', {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        userName: this.userName,
-                        lastLogin: this.lastLogin
-                    })
-                })
-                console.log(response.status)
-                location.reload()
-            }catch (error) {
-                console.error(error)
-            }
+            handleLogin(response, this.$store, this.$cookies)
         },
         handleLogOut: function () {
-            googleLogout()
-            this.$cookies.remove('user_session')
-            this.$store.dispatch('logout')
-            location.reload()
+            handleLogout(this.$store, this.$cookies)
         }
+    },
+    components: {
+        ShowModal
     }
 }
 </script>

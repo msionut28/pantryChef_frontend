@@ -1,4 +1,5 @@
 <template>
+    <nav><NavBar /></nav>
     <div>
         <img :src="recipe.image" :alt="recipe.title">
         <h3>{{ recipe.title }}</h3>
@@ -9,6 +10,7 @@
 
 <script>
 import { useRoute } from 'vue-router'
+import NavBar from '../components/NavBar.vue';
     const API_URL = 'http://localhost:4000/recipes'
 
     export default {
@@ -17,7 +19,9 @@ import { useRoute } from 'vue-router'
             error: '',
             recipe: {}
         }),
-
+        components: {
+            NavBar
+        },
         mounted() {
             const route = useRoute()
             fetch(`${API_URL}/${route.params.id}`)

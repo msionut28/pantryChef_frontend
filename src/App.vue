@@ -1,16 +1,26 @@
 <template> 
-<nav><NavBar /></nav>
 <main>
+  <!-- <ShowModal  v-if="showModal"/> -->
   <router-view :key="$route.path" />
 </main>
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue';
+import { decodeCredential } from 'vue3-google-login';
+import { mapState } from 'vuex';
 export default {
   name: 'App',
+  mounted() {
+    if(this.$cookies.isKey('user_session')) {
+        this.$store.dispatch('login')
+        const userData = decodeCredential(this.$cookies.get('user_session'))
+        this.userName = userData.given_name
+    }
+  },
+  computed: {
+    ...mapState(['isLoggedIn', 'showModal'])
+  },
   components: {
-    NavBar
   }
 }
 </script>

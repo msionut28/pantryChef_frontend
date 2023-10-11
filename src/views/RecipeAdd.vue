@@ -1,4 +1,5 @@
 <template>
+  <nav><NavBar /></nav>
 <div class="container">
   <h1>Add New Recipe</h1>
   <form enctype="multipart/form-data">
@@ -26,6 +27,7 @@
 </div>
 </template>
 <script>
+import NavBar from '../components/NavBar.vue';
 export default {
   name: 'RecipeAdd',
   data: () => ({
@@ -37,6 +39,9 @@ export default {
         },
         showModal: false
     }),
+    components: {
+      NavBar
+    },
     methods: {
       addRecipe: function () {
   const formData = new FormData();

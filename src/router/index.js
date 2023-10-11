@@ -1,10 +1,11 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import HomePage from '../components/Home'
-import RecipeAdd from '../components/RecipeAdd'
-import RecipeCreator from '../components/RecipeCreator'
-import IndividualRecipe from '../components/IndividualRecipe'
+import HomePage from '../views/Home'
+import RecipeAdd from '../views/RecipeAdd'
+import RecipeCreator from '../views/RecipeCreator'
+import IndividualRecipe from '../views/IndividualRecipe'
 import NavBar from '../components/NavBar'
 import LandingPage from '../views/LandingPage.vue'
+import LoginPage from '../views/LoginPage.vue'
 import store from '../store/store'
 
 const routes = [
@@ -16,13 +17,13 @@ const routes = [
     {
         name: 'HomePage',
         path: '/home',
-        component: HomePage
+        component: HomePage,
     },
     {
         name: 'RecipeAdd',
         path: '/add',
         component: RecipeAdd,
-        meta: { requiresAuth: true}
+        meta: { requiresAuth: true }
     },
     {
         name: 'RecipeCreator',
@@ -33,12 +34,17 @@ const routes = [
     {
         name: 'IndividualRecipe',
         path: '/recipes/:id',
-        component: IndividualRecipe
+        component: IndividualRecipe,
     },
     {
         name: 'LandingPage',
-        path: '/landing',
-        component: LandingPage
+        path: '/',
+        component: LandingPage,
+    },
+    {
+        name: 'LoginPage',
+        path: '/login',
+        component: LoginPage,
     }
 ]
 
@@ -48,14 +54,17 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    const isAuthenticated = store.getters.isLoggedIn;
-    const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
-  
-    if (requiresAuth && !isAuthenticated) {
-      next('/login'); 
+if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+    next()
     } else {
-      next();
+    next('/login')
     }
-  })
+} else {
+    to.meta.showNavBar = true; 
+    next();
+}
+});
+  
 
 export default router

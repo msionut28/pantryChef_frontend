@@ -1,28 +1,31 @@
 <template>
+    <nav><NavBar /></nav>
     <h1 class="page-title">INSPIRE YOURSELF, SEE OUR DAILY RECOMMENDED RECIPES</h1>
     <div class="grid-container">
         <div v-for="(recipe, index) in recipes.slice(0, 9)" :key="recipe._id" class="grid-item">
-            <router-link  :to="'/recipes/' + recipe._id">
             <img :src="recipe.image" :alt="recipe.title">
             <div :class="{ 'overlay': true, 'recipe': index === 4 }" @click="redirectToRecipeGenerator(index)">
+                <router-link  :to="'/recipes/' + recipe._id">
                 <div class="title">{{ recipe.title }}</div>
                 <p class="description">{{ recipe.description }}</p>
+                </router-link>
             </div>
-            </router-link>
         </div>
    </div>
 </template>
 
 <script>
 const API_URL = 'http://localhost:4000/recipes'
-
+import NavBar from '../components/NavBar.vue';
 export default {
     name: 'HomePage',
     data: () => ({
         error: '',
         recipes: []
     }),
-
+    components: {
+        NavBar
+    },
     mounted() {
         fetch(API_URL)
         .then(response => response.json())
@@ -45,6 +48,10 @@ export default {
 </script>
 
 <style scoped>
+a{
+    text-decoration: none;
+    color: white;
+}
 .page-title {
     font-size: 28px;
     margin-bottom: 30px;

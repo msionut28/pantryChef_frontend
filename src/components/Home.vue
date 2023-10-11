@@ -1,15 +1,15 @@
 <template>
     <h1 class="page-title">INSPIRE YOURSELF, SEE OUR DAILY RECOMMENDED RECIPES</h1>
     <div class="grid-container">
-        <router-link v-for="(recipe, index) in recipes.slice(0, 9)" :key="recipe._id" :to="'/recipes/' + recipe._id">
-        <div class="grid-item">
+        <div v-for="(recipe, index) in recipes.slice(0, 9)" :key="recipe._id" class="grid-item">
+            <router-link  :to="'/recipes/' + recipe._id">
             <img :src="recipe.image" :alt="recipe.title">
-            <div :class="{ 'overlay': true, 'recipe': index === 4 }">
+            <div :class="{ 'overlay': true, 'recipe': index === 4 }" @click="redirectToRecipeGenerator(index)">
                 <div class="title">{{ recipe.title }}</div>
                 <p class="description">{{ recipe.description }}</p>
             </div>
+            </router-link>
         </div>
-        </router-link>
    </div>
 </template>
 
@@ -30,7 +30,16 @@ export default {
             this.recipes = result
         })
     },
-    methods: {}
+    methods: {
+        redirectToRecipeGenerator(index) {
+            console.log('Redirecting to /create');
+            if(index === 4) {
+                console.log('Redirected to /create');
+                this.$router.push('/create');
+            }
+        }
+
+    }
 }
 
 </script>
@@ -58,6 +67,7 @@ export default {
     scale:0.9;
     transition: 0.4s ease-in-out;
     filter: grayscale(0%);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.50), 0 35px 22px rgba(0,0,0,0.16);
 }
 .grid-item:hover {
     color: black;

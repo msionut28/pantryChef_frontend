@@ -1,0 +1,26 @@
+*, *::before, *::after {
+box-sizing: border-box;
+}
+* {
+margin: 0;
+}
+body {
+    @font-face {
+        font-family: 'fjallaone';
+        src: URL('../fonts/fjalla/FjallaOne-Regular.ttf') format('truetype');
+      }
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+#app {
+    font-family: fjallaone;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+  
+  #logoimg {
+    width:6vw;
+    height:10vh;
+  }

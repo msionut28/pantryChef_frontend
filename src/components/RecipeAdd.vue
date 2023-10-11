@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="container">
   <h1>Add New Recipe</h1>
   <form enctype="multipart/form-data">
     <p><input type="text" v-model="recipe.title" name="title" placeholder="Recipe Title"><br></p>
@@ -25,21 +25,20 @@
   </div>
 </div>
 </template>
-
 <script>
 export default {
-    name: 'RecipeAdd',
-    data: () => ({
-        error: '',
-        recipe: {
-            title: '',
-            description: '',
-            image: ''
+  name: 'RecipeAdd',
+  data: () => ({
+    error: '',
+    recipe: {
+      title: '',
+      description: '',
+      image: ''
         },
         showModal: false
     }),
     methods: {
-        addRecipe: function () {
+      addRecipe: function () {
   const formData = new FormData();
   formData.append("title", this.recipe.title)
   formData.append("description", this.recipe.description)
@@ -61,7 +60,7 @@ export default {
   });
   this.showModal = true
 },
-    openFileInput() {
+openFileInput() {
         this.$refs.fileInput.click()
     },
     handleImageUpload(event) {
@@ -75,8 +74,14 @@ export default {
       this.recipe.description = ''
       this.fileInput = ''
     }
-    }
+  }
 }
 // const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
   
 </script>
+
+  <style>
+  .container {
+    width: 50vw;
+  }
+  </style>

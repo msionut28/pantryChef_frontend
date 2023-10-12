@@ -3,9 +3,11 @@ import HomePage from '../views/Home'
 import RecipeAdd from '../views/RecipeAdd'
 import RecipeCreator from '../views/RecipeCreator'
 import IndividualRecipe from '../views/IndividualRecipe'
+import EditRecipe from '../views/EditRecipe.vue'
 import NavBar from '../components/NavBar'
 import LandingPage from '../views/LandingPage.vue'
 import LoginPage from '../views/LoginPage.vue'
+import UserRecipe from '../views/UserRecipe.vue'
 import store from '../store/store'
 
 const routes = [
@@ -23,7 +25,7 @@ const routes = [
         name: 'RecipeAdd',
         path: '/add',
         component: RecipeAdd,
-        meta: { requiresAuth: true }
+        meta: { requiresAdmin: true }
     },
     {
         name: 'RecipeCreator',
@@ -37,6 +39,12 @@ const routes = [
         component: IndividualRecipe,
     },
     {
+        name: 'EditRecipe',
+        path: '/recipes/edit/:id',
+        component: EditRecipe,
+        meta: { requiresAdmin: true }
+    },
+    {
         name: 'LandingPage',
         path: '/',
         component: LandingPage,
@@ -45,6 +53,12 @@ const routes = [
         name: 'LoginPage',
         path: '/login',
         component: LoginPage,
+    },
+    {
+        name: 'UserRecipe',
+        path: '/:user/recipes',
+        component: UserRecipe,
+        meta: { requiresAuth: true }
     }
 ]
 
@@ -60,7 +74,14 @@ if (to.matched.some(record => record.meta.requiresAuth)) {
     } else {
     next('/login')
     }
-} else {
+} else if (to.matched.some(record => record.meta.requiresAdmin)) {
+    console.log(store.getters.isAdmin);
+    if (store.getters.isAdmin) { 
+        next()
+    } else {
+        next('/home') 
+    }
+}else {
     to.meta.showNavBar = true; 
     next();
 }

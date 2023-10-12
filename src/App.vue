@@ -15,6 +15,8 @@ export default {
         this.$store.dispatch('login')
         const userData = decodeCredential(this.$cookies.get('user_session'))
         this.userName = userData.given_name
+    }else if(this.$cookies.isKey('admin_session')){
+      this.$store.dispatch('isAdmin')
     }
   },
   computed: {

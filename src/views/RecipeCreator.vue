@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import { decodeCredential } from 'vue3-google-login';
 import NavBar from '../components/NavBar.vue';
 
 export default {
@@ -52,8 +51,16 @@ export default {
     NavBar
   },
   mounted(){
-    const userData = decodeCredential(this.$cookies.get('user_session'))
-    this.userName = userData.given_name
+    const googleUser = this.$cookies.isKey('user_session')
+    const userPass = this.$cookies.isKey('userpass_session')
+    const adminUser = this.$cookies.isKey('admin_session')
+    if(googleUser) {
+        this.userName = this.$cookies.get('username')
+    }else if(userPass){
+      this.userName = this.$cookies.get('username')
+    }else if(adminUser){
+      this.userName = this.$cookies.get('username')
+    }
   },
     methods: {
   addItem: function () {

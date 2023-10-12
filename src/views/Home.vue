@@ -35,10 +35,8 @@ export default {
     },
     methods: {
         redirectToRecipeGenerator(index) {
-            console.log('Redirecting to /create');
             if(index === 4) {
-                console.log('Redirected to /create');
-                this.$router.push('/create');
+                this.$router.replace('/create');
             }
         }
 

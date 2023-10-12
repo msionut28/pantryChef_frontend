@@ -19,8 +19,11 @@
         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Recipes</a>
         <div class="dropdown-menu" aria-labelledby="dropdownId">
         <a class="dropdown-item" href="/create">Create a new one</a>
-        <a class="dropdown-item" href="#">View past recipes</a>
+        <router-link :to="userName +'/recipes'"><a class="dropdown-item" href="#" >View past recipes</a> </router-link>
         </div>
+    </li>
+    <li v-if="isAdmin" class="nav-item">
+        <a href="/add" class="nav-link">New Blog Post</a>
     </li>
     <li v-if="isLoggedIn" class="nav-item">
         <a class="nav-link" href="#" @click="handleLogOut">Log Out</a>
@@ -29,7 +32,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
         <div class="dropdown-menu" aria-labelledby="dropdownId">
             <a class="dropdown-item" href="#"><GoogleLogin :callback="callback" /></a>
-            <a class="dropdown-item" href="#">Username and Password</a>
+            <a class="dropdown-item" href="/login">Username and Password</a>
         </div>
     </li>
     <li v-if="showModal">
@@ -46,8 +49,7 @@
 </template>
 
 <script>
-import { decodeCredential } from 'vue3-google-login';
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex'; 
 import { handleLogin, handleLogout } from '../auth/auth';
 import ShowModal from './ShowModal.vue';
 export default {
@@ -58,14 +60,19 @@ export default {
         lastLogin: ''
     }),
     mounted() {
-        if(this.$cookies.isKey('user_session')) {
-            this.$store.dispatch('login')
-            const userData = decodeCredential(this.$cookies.get('user_session'))
-            this.userName = userData.given_name
-        }
+    const googleUser = this.$cookies.isKey('user_session')
+    const userPass = this.$cookies.isKey('userpass_session')
+    const adminUser = this.$cookies.isKey('admin_session')
+    if(googleUser) {
+        this.userName = this.$cookies.get('username')
+    }else if(userPass){
+      this.userName = this.$cookies.get('username')
+    }else if(adminUser){
+      this.userName = this.$cookies.get('username')
+    }
     },
     computed: {
-        ...mapState(['isLoggedIn', 'showModal'])
+        ...mapState(['isLoggedIn', 'showModal', 'isAdmin'])
     },
     methods: {
         ...mapActions(['login', 'logout']),
@@ -82,4 +89,9 @@ export default {
 }
 </script>
 
+<style scoped>
+a{
+    text-decoration: none;
+}
+</style>
 

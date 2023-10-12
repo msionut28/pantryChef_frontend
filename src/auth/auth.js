@@ -3,13 +3,12 @@ import { decodeCredential, googleLogout } from 'vue3-google-login';
 export const handleLogin =  async function (response, store, cookies) {
     store.dispatch('login')
     const userData = decodeCredential(response.credential)
-    console.log(`YOUR USER'S DATA:`, JSON.stringify(userData,null, 2));
     const timestamp = Date.now()
     const currentTime = new Date(timestamp)
-    console.log(userData);
     const userName = userData.given_name
     let userId = 1
     cookies.set('user_session', response.credential)
+    cookies.set(cookies.set('username', userData.given_name))
 
     try{
         const response = await fetch('http://localhost:4000/useradd', {
@@ -51,6 +50,51 @@ export const handleLogin =  async function (response, store, cookies) {
 export const handleLogout = function (store, cookies) {
     googleLogout()
     cookies.remove('user_session')
+    cookies.remove('admin_session')
+    cookies.remove('username')
     store.dispatch('logout')
     location.reload()
+}
+
+export async function userPassLogin(userName, password, store, cookies, router){
+    try{
+        console.log('trying to fetch data')
+        const response = await fetch('http://localhost:4000/login', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                userName: userName,
+                password: password
+            })
+        })
+        console.log('Request SENT!')
+        if(response.ok){
+            const data = await response.json()
+            console.log('inside the response')
+            if(data.isAdmin){
+                console.log('ADMIN LOGGED IN')
+                store.dispatch('isAdmin')
+                console.log('LOGGED IN AS AN ADMIN!')
+                console.log(store.getters.isAdmin);
+                cookies.set('admin_session', data.token)
+                cookies.set('username', data.userName)
+                router.push({path: '/home'})
+            }else  if (data.token){
+                store.dispatch('login')
+                console.log('Store login dispatched')
+                cookies.set('userpass_session', data.token)
+                cookies.set('username', data.userName)
+                router.push({path: '/home'})
+            } else{
+                location.reload()
+                console.log('CREDENTIALS DO NOT MATCH OUR DATABASE');
+            }
+        } else{
+            alert('incorrect credentials!')
+        }
+    }catch(error){
+        console.error(error)
+    }
 }

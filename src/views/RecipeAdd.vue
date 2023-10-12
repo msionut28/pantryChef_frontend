@@ -85,7 +85,7 @@ openFileInput() {
   
 </script>
 
-  <style>
+  <style scoped>
   .container {
     width: 50vw;
   }

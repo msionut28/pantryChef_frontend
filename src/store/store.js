@@ -3,7 +3,8 @@ import { createStore } from "vuex";
 export default createStore({
     state: {
         isLoggedIn: false,
-        showModal: false
+        showModal: false,
+        isAdmin: false,
     },
     mutations:{
         loginSetter(state, value){
@@ -13,6 +14,10 @@ export default createStore({
             console.log('Setting showModal to:', value)
             state.showModal = value
         },
+        adminChecker(state, value){
+            console.log('Setting isAdmin to:', value)
+            state.isAdmin = value
+        }
     },
     actions: {
         login({ commit }) {
@@ -20,6 +25,7 @@ export default createStore({
         },
         logout({ commit }) {
             commit('loginSetter', false)
+            commit('adminChecker', false)
         },
         modal({ commit }) {
             commit('modalPopUp', true)
@@ -27,9 +33,14 @@ export default createStore({
         noModal({ commit }) {
             commit('modalPopUp', false)
         },
+        isAdmin({ commit }) {
+            commit('adminChecker', true)
+            commit('loginSetter', true)
+        }
     },
     getters: {
         isLoggedIn: state => state.isLoggedIn,
-        showModal: state => state.showModal
+        showModal: state => state.showModal,
+        isAdmin: state => state.isAdmin
     }
 })

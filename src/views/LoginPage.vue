@@ -3,9 +3,9 @@
     <div class="login-wrapper">
         <div class="login-form">
             <h3>Log In</h3>
-            <input class="form-control" type="text" placeholder="Username">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            <button type="button" name="" id="submit" class="btn btn-primary">Submit</button>
+            <input class="form-control" type="text" placeholder="Username" v-model="userName">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password">
+            <button type="button" name="" id="submit" class="btn btn-primary" @click="submitLogin">Submit</button>
         </div>
         <div class="google-login">
             <GoogleLogin :callback="callback" />
@@ -16,14 +16,15 @@
 <script>
 import { decodeCredential } from 'vue3-google-login';
 import { mapState, mapActions } from 'vuex';
-import { handleLogin, handleLogout } from '../auth/auth';
+import { handleLogin, handleLogout, userPassLogin } from '../auth/auth';
 
 export default {
     name: 'LoginPage',
     data: () => ({
         isInit: false,
         userName: '',
-        lastLogin: ''
+        password: '',
+        lastLogin: '',
     }),
     computed: {
         ...mapState(['isLoggedIn'])
@@ -43,6 +44,9 @@ export default {
         },
         handleLogOut: function () {
             handleLogout(this.$store, this.$cookies)
+        },
+        submitLogin: function () {
+            userPassLogin(this.userName, this.password, this.$store, this.$cookies, this.$router)
         }
     }
 }

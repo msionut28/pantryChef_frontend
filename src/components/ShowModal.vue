@@ -69,7 +69,7 @@ export default{
         const userData = decodeCredential(this.$cookies.get('user_session'))
         this.userName = userData.given_name
         const data = { membership: parseInt(newMembership) }
-        fetch(`http://localhost:4000/users/${this.userName}`, {
+        await fetch(`http://localhost:4000/users/${this.userName}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

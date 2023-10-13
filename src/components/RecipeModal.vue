@@ -7,11 +7,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>{{ recipe.description }}</p>
                 <h4>INGREDIENTS</h4>
                 <ul>
                     <li v-for="ingredient in recipe.ingredients" :key="ingredient">{{ ingredient }}</li>
                 </ul>
+                <p>{{ recipe.description }}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

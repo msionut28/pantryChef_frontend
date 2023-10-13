@@ -44,14 +44,6 @@ export default {
         editRecipe: function () {
 
         },
-        deleteRecipe: function() {
-                fetch(`${API_URL}/${this.recipe._id}`,{
-                    method: 'DELETE'
-                })
-                .then(() => {
-                    this.$router.push({path: '/home'})
-                })
-            }
     }
 }
 </script>

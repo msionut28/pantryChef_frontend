@@ -1,3 +1,4 @@
+// import router from '@/router';
 import { decodeCredential, googleLogout } from 'vue3-google-login';
 
 export const handleLogin =  async function (response, store, cookies) {
@@ -40,6 +41,7 @@ export const handleLogin =  async function (response, store, cookies) {
             }
         }
         console.log(response.status, userId)
+        location.reload()
         
     }
     catch (error) {
@@ -47,13 +49,13 @@ export const handleLogin =  async function (response, store, cookies) {
     }
 }
 
-export const handleLogout = function (store, cookies) {
+export const handleLogout = function (store, cookies, router) {
     googleLogout()
     cookies.remove('user_session')
     cookies.remove('admin_session')
     cookies.remove('username')
     store.dispatch('logout')
-    location.reload()
+    router.push({path: '/'})
 }
 
 export async function userPassLogin(userName, password, store, cookies, router){

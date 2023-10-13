@@ -43,7 +43,7 @@ export default {
             this.$router.push({path: '/home'})
         },
         handleLogOut: function () {
-            handleLogout(this.$store, this.$cookies)
+            handleLogout(this.$store, this.$cookies, this.$router)
         },
         submitLogin: function () {
             userPassLogin(this.userName, this.password, this.$store, this.$cookies, this.$router)

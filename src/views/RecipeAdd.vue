@@ -5,8 +5,10 @@
   <form enctype="multipart/form-data">
     <p><input type="text" v-model="recipe.title" name="title" placeholder="Recipe Title"><br></p>
     <p><input type="text" v-model="recipe.description" name="description" placeholder="Recipe Description"><br></p>
+    <p><input type="text" v-model="recipe.ingredients" name="ingredients" placeholder="Recipe Ingredients"><br></p>
+    <p><input type="text" v-model="recipe.instructions" name="instructions" placeholder="Recipe Instructions"><br></p>
     <p><input type="file" name="image" @change="handleImageUpload" ref="fileInput"><br></p>
-    <p><button type="submit" data-bs-toggle="modal" data-bs-target="#modalId" @click.prevent="addRecipe">Add new recipe</button></p>
+    <p><button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#modalId" @click.prevent="addRecipe">Add new recipe</button></p>
   </form>
   <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
@@ -88,5 +90,16 @@ openFileInput() {
   <style scoped>
   .container {
     width: 50vw;
+    height: 50vh;
+    border: 1px black solid;
+    background: rgba(68, 68, 68, 0.05)
+  }
+  button{
+    background-color: rgba(68, 68, 68, 1);
+    border: none;
+  }
+  button:hover{
+    background-color: rgb(98, 98, 98);
+    border: none;
   }
   </style>

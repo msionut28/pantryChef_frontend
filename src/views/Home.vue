@@ -1,4 +1,5 @@
 <template>
+<div class="wrapper">
     <nav><NavBar /></nav>
     <h1 class="page-title">INSPIRE YOURSELF, SEE OUR DAILY RECOMMENDED RECIPES</h1>
     <div class="grid-container">
@@ -12,6 +13,7 @@
             </div>
         </div>
    </div>
+</div>
 </template>
 
 <script>

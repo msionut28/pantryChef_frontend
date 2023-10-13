@@ -40,6 +40,7 @@
     </li>
     </ul>
 </div>
+<p v-if="isLoggedIn">Hello, <strong>{{ userName }}</strong>!</p>
 <div class="d-flex my-2 my-lg-0" id="logo">
     <img src="../assets/logo/logo-2.png" alt="pantry chef logo" id="logoimg">
 </div>
@@ -78,9 +79,10 @@ export default {
         ...mapActions(['login', 'logout']),
         callback: async function (response) {
             handleLogin(response, this.$store, this.$cookies)
+            location.reload()
         },
         handleLogOut: function () {
-            handleLogout(this.$store, this.$cookies)
+            handleLogout(this.$store, this.$cookies, this.$router)
         }
     },
     components: {

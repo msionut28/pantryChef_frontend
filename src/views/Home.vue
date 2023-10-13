@@ -1,5 +1,5 @@
 <template>
-<div class="wrapper">
+<div class="home-wrapper">
     <nav><NavBar /></nav>
     <h1 class="page-title">INSPIRE YOURSELF, SEE OUR DAILY RECOMMENDED RECIPES</h1>
     <div class="grid-container">
@@ -48,6 +48,9 @@ export default {
 </script>
 
 <style scoped>
+.home-wrapper{
+    width: 100%;
+}
 a{
     text-decoration: none;
     color: white;
@@ -62,7 +65,7 @@ a{
     align-content: center;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px; 
-    height: 75vh;
+    height: 79vh;
     width: 85vw; 
     margin: 0 auto; 
 }
@@ -122,8 +125,9 @@ img {
     font-size: 1.5em
 }
 .description{
-    font-size: 1.25em;
-    margin-top: 0.25em;
+    font-size: 1.15em;
+    margin-top: 0.2em;
+    font-family: 'Raleway';
 }
 
 </style>

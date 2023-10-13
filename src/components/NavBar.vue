@@ -40,7 +40,7 @@
     </li>
     </ul>
 </div>
-<p v-if="isLoggedIn">Hello, <strong>{{ userName }}</strong>!</p>
+<p v-if="isLoggedIn">Hello, <strong>{{ userName }}</strong>!<font-awesome-icon v-if="isAdmin" icon="fa-solid fa-user-secret" /></p>
 <div class="d-flex my-2 my-lg-0" id="logo">
     <img src="../assets/logo/logo-2.png" alt="pantry chef logo" id="logoimg">
 </div>

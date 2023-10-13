@@ -1,14 +1,14 @@
 <template>
 <nav><NavBar /></nav>
 <div class="recipe-wrapper">
-    <input v-if="isEditingTitle" v-model="title" type="text" class="title-input" placeholder="TYPE IN A TITLE AND HIT ENTER.." @keyup.enter="saveTitle"/>
+    <input v-if="isEditingTitle" v-model="title" type="text" class="form-control" id="title-input" placeholder="TYPE IN A TITLE AND HIT ENTER.." @keyup.enter="saveTitle"/>
     <div v-else>
       <h3>
         {{ title }}
         <myBtn @click="edit" buttonText="EDIT" />
-      </h3>
+      </h3> 
     </div>
-  <input class="ingredients-add" v-model="newItem" @keyup.enter="addItem" placeholder="Add an item">
+  <input class="form-control" id="ingredients-add" v-model="newItem" @keyup.enter="addItem" placeholder="Add an item">
   <div class="verticalLines">
         <ul class="ingredients">
             <li v-for="(item, index) in createdRecipe" :key="index">

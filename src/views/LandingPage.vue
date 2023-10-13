@@ -25,7 +25,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/bg/Landing.jpeg');
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../assets/bg/Landing.jpeg');
     color: #FFF;
     background-size: cover;
     width: 100vw;
@@ -68,6 +68,7 @@ export default {
 }
 .description{
     color: rgba(255, 223, 186, 0.4);
+    font-family: 'Raleway';
     font-size: 20px;
     font-weight: 500;
     letter-spacing: 0.15em;
@@ -88,14 +89,16 @@ export default {
 }
 button{
     border: none;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(256,256,256,0.7);
+    color: black;
     border-radius: 50px; 
     width: 25vw;
     font-size: 30px;
-    transition: transform 0.4s ease-in-out, color 0.6s ease-in-out, background-color 0.6s ease-in-out;
+    transition: transform 0.4s ease-in-out, color 0.4s ease-in-out, background-color 0.4s ease-in-out;
 }
 button:hover{
     transform: scale(1.2);
+    box-shadow: 0 0 10px #8e8e8e;
     border: none;
     background-color: white;
     color: black

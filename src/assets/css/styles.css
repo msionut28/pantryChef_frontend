@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap');
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 *, *::before, *::after {
 box-sizing: border-box;
 }
@@ -10,15 +22,23 @@ body {
         font-family: 'fjallaone';
         src: URL('../fonts/fjalla/FjallaOne-Regular.ttf') format('truetype');
       }
+      @font-face {
+        font-family: 'poppins';
+        src: url('../fonts/poppins/Poppins-ThinItalic.ttf') format('truetype');
+    }
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    
   }
 #app {
-    font-family: fjallaone;
+    font-family: 'fjallaone';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    background: linear-gradient(-45deg, #cfcfcf, #ffffff, #fff9f9, #d1d1d1);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
   }
   
   #logoimg {

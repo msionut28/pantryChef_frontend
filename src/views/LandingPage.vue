@@ -87,15 +87,15 @@ export default {
     gap: 10%;
 }
 button{
-    border: white 1px solid;
-    background-color: transparent;
+    border: none;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 50px; 
     width: 25vw;
     font-size: 30px;
     transition: transform 0.4s ease-in-out, color 0.6s ease-in-out, background-color 0.6s ease-in-out;
 }
 button:hover{
     transform: scale(1.2);
-    border-radius: 50px; 
     border: none;
     background-color: white;
     color: black

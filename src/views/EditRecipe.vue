@@ -5,12 +5,13 @@
         <p><input type="text" v-model="post.title" name="title" placeholder="Post Title"><br></p>
         <p><input type="text" v-model="post.description" name="descritpion" placeholder="Post Descritpion"><br></p>
         <p><input type="text" v-model="post.ingredients" name="ingredients" placeholder="Ingredients" disabled></p>
-        <p><button v-on:click="editBook">Save</button></p>
+        <p><myBtn v-on:click="editBook" buttonText="SAVE"/></p>
     </div>
 </template>
 
 <script>
 import NavBar from '../components/NavBar.vue'
+import myBtn from '@/components/SingleButton.vue';
 import { useRoute } from 'vue-router';
 const API_URL = 'http://localhost:4000/recipes'
 
@@ -55,7 +56,8 @@ export default {
         }
     },
     components: {
-        NavBar
+        NavBar,
+        myBtn
     }
     
 }

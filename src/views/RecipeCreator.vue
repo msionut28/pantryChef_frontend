@@ -5,7 +5,7 @@
     <div v-else>
       <h3>
         {{ title }}
-        <button type="button" id="" class="btn btn-primary editor" @click="edit">EDIT</button>
+        <myBtn @click="edit" buttonText="EDIT" />
       </h3>
     </div>
   <input class="ingredients-add" v-model="newItem" @keyup.enter="addItem" placeholder="Add an item">
@@ -13,14 +13,17 @@
         <ul class="ingredients">
             <li v-for="(item, index) in createdRecipe" :key="index">
             {{ item }}
-            <button type="button" class="btn btn-primary editor" @click="removeItem(index)">Remove</button>
+            <myBtn @click="removeItem(index)" buttonText="REMOVE" />
             </li>
-              <button type="button" class="btn btn-primary editor" @click="addRecipe" v-if="createdRecipe.length> 0 && !recipeGenerated && !loading">SAVE</button>
+            <li></li>
+            <li></li>
+            <li></li>
+              <myBtn @click="addRecipe" buttonText="SAVE" v-if="createdRecipe.length> 0 && !recipeGenerated && !loading" />
             <button class="btn btn-primary" type="button" id="loading" disabled v-if="loading">
               <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               Loading...
               </button>
-            <button type="button" name="" id="" class="btn btn-primary editor" v-if="recipeGenerated" @click="viewRecipe">VIEW RECIPE</button>
+            <myBtn v-if="recipeGenerated" @click="viewRecipe" buttonText="SHOW" />
         </ul>
       </div>
       <div class="chat-box">
@@ -31,6 +34,7 @@
 
 <script>
 import NavBar from '../components/NavBar.vue';
+import myBtn from '../components/SingleButton.vue'
 
 export default {
   name: 'RecipeCreate',
@@ -48,7 +52,8 @@ export default {
       showRecipe: false
   }),
   components: {
-    NavBar
+    NavBar,
+    myBtn
   },
   mounted(){
     const googleUser = this.$cookies.isKey('user_session')
@@ -134,14 +139,14 @@ export default {
 
 <style scoped>
 .recipe-wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: auto;
-    width: 30vw;
-    border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  width: 30vw;
+  border: 1px solid black;
 }
 .ingredients { 
   color: #858585; 

@@ -2,8 +2,8 @@
     <nav><NavBar /></nav>
     <div class="container">
         <div class="editor">
-            <router-link :to="`/recipes/edit/${recipe._id}`"><button v-if="isAdmin">EDIT</button></router-link>
-            <button v-if="isAdmin" @click="deleteRecipe">DELETE</button>
+            <router-link :to="`/recipes/edit/${recipe._id}`"><myBtn v-if="isAdmin" buttonText="EDIT"/></router-link>
+            <myBtn v-if="isAdmin" @click="deleteRecipe" buttonText="DELETE" />
         </div>
         <div>
             <img :src="recipe.image" :alt="recipe.title">
@@ -18,6 +18,7 @@
 import { useRoute } from 'vue-router'
 import { mapState } from 'vuex';
 import NavBar from '../components/NavBar.vue';
+import myBtn from '../components/SingleButton.vue'
 const API_URL = 'http://localhost:4000/recipes'
 
 export default {
@@ -27,7 +28,8 @@ export default {
         recipe: {}
     }),
     components: {
-        NavBar
+        NavBar,
+        myBtn
     },
     mounted() {
         const route = useRoute()
@@ -41,10 +43,16 @@ export default {
         ...mapState(['isAdmin'])
     },
     methods: {
-        editRecipe: function () {
-
-        },
+    deleteRecipe: function() {
+        fetch(`${API_URL}/${this.recipe._id}`,{
+            method: 'DELETE'
+        })
+        .then(() => {
+            this.$router.push({path: '/home'})
+        })
+        }
     }
+    
 }
 </script>
 

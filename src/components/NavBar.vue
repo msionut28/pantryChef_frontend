@@ -95,5 +95,9 @@ export default {
 a{
     text-decoration: none;
 }
+a:active{
+    background-color: transparent;
+    color: black
+}
 </style>
 

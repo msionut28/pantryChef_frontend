@@ -17,7 +17,9 @@
                     <li v-if="isLoggedIn" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Recipes</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="/create">Create a new one</a>
+                            <router-link :to="'/create'">
+                                <a class="dropdown-item" href="#">Create a new one</a>
+                            </router-link>
                             <router-link :to="userName +'/recipes'">
                                 <a class="dropdown-item" href="#" >View past recipes</a>
                             </router-link>

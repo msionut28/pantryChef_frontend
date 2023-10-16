@@ -11,11 +11,9 @@ export default createStore({
             state.isLoggedIn = value
         },
         modalPopUp(state, value){
-            console.log('Setting showModal to:', value)
             state.showModal = value
         },
         adminChecker(state, value){
-            console.log('Setting isAdmin to:', value)
             state.isAdmin = value
         }
     },

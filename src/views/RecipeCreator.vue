@@ -111,14 +111,12 @@ export default {
       this.createdRecipe.push(this.newItem)
       this.newItem = ''
     }
-    console.log(this.createdRecipe);
   },
   saveTitle: function (event) {
     const newTitle = event.target.value.trim()
     if (newTitle !== '') {
       this.title = newTitle
       this.isEditingTitle = false
-      console.log(this.title);
     }
   },
   edit: function () {
@@ -129,7 +127,6 @@ export default {
   },
   addRecipe: function () {
     this.loading = true
-    console.log(`New recipe ${this.title}`);
     fetch(`${backendApi}/create`, {
         method: "POST",
         headers: {
@@ -146,21 +143,17 @@ export default {
     })
     .then(data => {
     this.recipeId = data._id
-    console.log(this.recipeId);
     this.loading = false
     this.recipeGenerated = true
   })
   },
   viewRecipe: async function(){
-    console.log(this.recipeId)
-    console.log(this.description);
     const res = await fetch(`${backendApi}/generated/${this.recipeId}`)
     const recipe = await res.json()
     this.description = recipe.description
     this.updateUserRecipe(this.userName)
   },
   updateUserRecipe: async function(user){
-    console.log(`${this.recipeId}`);
     await fetch(`${backendApi}/users/${user}/addrecipe`, {
       method: "POST",
       headers: {
@@ -169,7 +162,6 @@ export default {
       body: JSON.stringify({recipeId: this.recipeId})
     })
     .then(res => res.json())
-    console.log(`recipe added to the user: ${user}`);
   }
  }
 }

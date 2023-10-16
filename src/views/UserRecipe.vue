@@ -79,15 +79,15 @@
                   this.recipes.push(res)
                 })
                 .catch(error => {
-                  console.log(`Error fetching the recipe: ${error}`)
+                  console.error(`Error fetching the recipe: ${error}`)
                 })
             })
           })
           .catch(error => {
-            console.log(`Error fetching the user: ${error}`)
+            console.error(`Error fetching the user: ${error}`)
           })
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     },
     components: {
@@ -102,7 +102,6 @@
         this.isModalOpen = false;
       },
       deleteRecipe(recipeid) {
-        console.log(`${recipeid}`);
         fetch(`${RECIPES_URL}/${recipeid}`, {
           method: 'DELETE'
         })

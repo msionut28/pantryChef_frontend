@@ -81,7 +81,6 @@ if (to.matched.some(record => record.meta.requiresAuth)) {
     next('/login')
     }
 } else if (to.matched.some(record => record.meta.requiresAdmin)) {
-    console.log(store.getters.isAdmin);
     if (store.getters.isAdmin) { 
         next()
     } else {

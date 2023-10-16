@@ -34,14 +34,12 @@ export const handleLogin =  async function (response, store, cookies) {
             userId = user._id
             const membership = parseInt(user.membership)
             if (membership === 0 || null){
-                console.log('you have no membership assigned');
                 cookies.set('new_user', true)
                 store.dispatch('modal')
             }else {
-                console.log('existing user');
+                return
             }
         }
-        console.log(response.status, userId)
         location.reload()
         
     }
@@ -61,7 +59,6 @@ export const handleLogout = function (store, cookies, router) {
 
 export async function userPassLogin(userName, password, store, cookies, router){
     try{
-        console.log('trying to fetch data')
         const response = await fetch(`${backendApi}/login`, {
             method: "POST",
             headers: {
@@ -72,27 +69,20 @@ export async function userPassLogin(userName, password, store, cookies, router){
                 password: password
             })
         })
-        console.log('Request SENT!')
         if(response.ok){
             const data = await response.json()
-            console.log('inside the response')
             if(data.isAdmin){
-                console.log('ADMIN LOGGED IN')
                 store.dispatch('isAdmin')
-                console.log('LOGGED IN AS AN ADMIN!')
-                console.log(store.getters.isAdmin);
                 cookies.set('admin_session', data.token)
                 cookies.set('username', data.userName)
                 router.push({path: '/home'})
             }else  if (data.token){
                 store.dispatch('login')
-                console.log('Store login dispatched')
                 cookies.set('userpass_session', data.token)
                 cookies.set('username', data.userName)
                 router.push({path: '/home'})
             } else{
                 location.reload()
-                console.log('CREDENTIALS DO NOT MATCH OUR DATABASE');
             }
         } else{
             alert('incorrect credentials!')

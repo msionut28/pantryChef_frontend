@@ -109,7 +109,6 @@ export default {
     },
     methods: {
         editRecipe: function () {
-            console.log(`EDITED RECIPE ${this.post.title} `);
             fetch(`${API_URL}/${this.post.id}`, {
                 method: "PUT",
                 headers: {
@@ -133,7 +132,6 @@ export default {
         addIngredient: function() {
         if (this.newIngredient.trim() !== '') {
           this.ingredients.push(this.newIngredient)
-          console.log(this.ingredients);
           this.newIngredient = ''
         }
   },removeIngredient(index) {

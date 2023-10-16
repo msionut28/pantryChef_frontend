@@ -100,7 +100,6 @@ export default {
   })
   .then(res => {
     if (res.ok) {
-      console.log("Recipe added successfully")
       this.showModal = true
     } else {
       console.error("Failed to add recipe")

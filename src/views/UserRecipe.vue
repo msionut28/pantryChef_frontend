@@ -2,7 +2,8 @@
     <v-app>
       <NavBar />
       <v-container>
-        <h1 class="headline">YOUR RECIPES</h1>
+        <h1 class="headline" v-if="recipes.length > 0">YOUR RECIPES</h1>
+        <h1 class="headline" v-if="recipes.length < 1">Ooopss...</h1>
         <h5 v-if="recipes.length < 1" class="caption">
           Looks like you haven't created any recipes... Why don't you give it a try? 🤔 Click
           <router-link :to="'/create'" class="link">here</router-link>!

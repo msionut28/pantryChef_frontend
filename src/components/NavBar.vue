@@ -41,7 +41,7 @@
                         </div>
                     </li>
                     <li v-if="showModal">
-                        <ShowModal/>
+                        <ShowModal />
                     </li>
                 </ul>
             </div>
@@ -57,7 +57,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'; 
 import { handleLogin, handleLogout } from '../auth/auth';
-import ShowModal from './ShowModal.vue';
+import ShowModal from './ShowModal';
 export default {
     name: "NavBar",
     data: () => ({

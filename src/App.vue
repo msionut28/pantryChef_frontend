@@ -1,6 +1,5 @@
 <template> 
 <main>
-  <!-- <ShowModal  v-if="showModal"/> -->
   <router-view :key="$route.path" />
 </main>
 </template>
@@ -15,6 +14,9 @@ export default {
         this.$store.dispatch('login')
         const userData = decodeCredential(this.$cookies.get('user_session'))
         this.userName = userData.given_name
+        if(this.$cookies.isKey('new_user')){
+          this.$store.dispatch('modal')
+        }
     }else if(this.$cookies.isKey('admin_session')){
       this.$store.dispatch('isAdmin')
     }
@@ -22,8 +24,6 @@ export default {
   computed: {
     ...mapState(['isLoggedIn', 'showModal'])
   },
-  components: {
-  }
 }
 </script>
 

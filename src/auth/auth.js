@@ -35,6 +35,7 @@ export const handleLogin =  async function (response, store, cookies) {
             const membership = parseInt(user.membership)
             if (membership === 0 || null){
                 console.log('you have no membership assigned');
+                cookies.set('new_user', true)
                 store.dispatch('modal')
             }else {
                 console.log('existing user');

@@ -68,7 +68,7 @@
 
 <script>
 import { decodeCredential } from 'vue3-google-login';
-const backendApi = process.env.BACKEND_API
+const backendApi = process.env.VUE_APP_BACKEND_API
 export default{
     name: 'ShowModal',
     methods: {
@@ -88,6 +88,7 @@ export default{
             console.log(data.message);
         })
         .then(location.reload())
+        .then(this.$cookies.remove('new_user'))
         .catch((error) => {
             console.error(error);
         });

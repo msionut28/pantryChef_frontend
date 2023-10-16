@@ -74,24 +74,29 @@ export default{
         async updateMember(newMembership){
         const userName = this.$cookies.get('username')
         const data = { membership: parseInt(newMembership) }
-        await fetch(`${backendApi}/users/${userName}`, {
+        try {
+      const response = await fetch(`${backendApi}/users/${userName}`, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(data),
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data.message);
-        })
-        .then(this.$cookies.remove('new_user'))
-        // .then(location.reload())
-        .catch((error) => {
-            console.error(error);
-        });
-            }
-        }
+      });
+
+      if (response.ok) {
+        const responseData = await response.json()
+        console.log(responseData.message)
+        this.$cookies.remove('new_user')
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        location.reload();
+      } else {
+        console.error('Failed to update membership.')
+      }
+    } catch (error) {
+      console.error(error);
+    }
+ }
+}
 }
 </script>
 

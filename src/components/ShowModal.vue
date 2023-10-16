@@ -72,9 +72,9 @@ export default{
     name: 'ShowModal',
     methods: {
         async updateMember(newMembership){
-        userName = this.$cookies.get('username')
+        const userName = this.$cookies.get('username')
         const data = { membership: parseInt(newMembership) }
-        await fetch(`${backendApi}/users/${this.userName}`, {
+        await fetch(`${backendApi}/users/${userName}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

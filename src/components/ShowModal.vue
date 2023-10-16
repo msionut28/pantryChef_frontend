@@ -67,14 +67,12 @@
 </template>
 
 <script>
-import { decodeCredential } from 'vue3-google-login';
 const backendApi = process.env.VUE_APP_BACKEND_API
 export default{
     name: 'ShowModal',
     methods: {
         async updateMember(newMembership){
-        const userData = decodeCredential(this.$cookies.get('user_session'))
-        this.userName = userData.given_name
+        userName = this.$cookies.get('username')
         const data = { membership: parseInt(newMembership) }
         await fetch(`${backendApi}/users/${this.userName}`, {
         method: 'PUT',

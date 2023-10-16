@@ -5,8 +5,12 @@
         <p class="description">Pantry Chef is your ultimate culinary companion, offering a delightful fusion of inspiration and innovation in the world of food. With Pantry Chef, all you need to do is list the ingredients you have in your pantry, and watch as our AI wizard crafts a recipe just for you in seconds.</p>
     </div>
     <div class="buttons">
-        <router-link :to="'/home'"><button type="button" class="btn btn-primary">BROWSE AS GUEST</button></router-link>
-        <router-link :to="'/login'"><button type="button" class="btn btn-primary">LOGIN</button></router-link>
+        <router-link :to="'/home'">
+            <button type="button" class="btn btn-primary">BROWSE AS GUEST</button>
+        </router-link>
+        <router-link :to="'/login'">
+            <button type="button" class="btn btn-primary">LOGIN</button>
+        </router-link>
     </div>
 </div>
 </template>

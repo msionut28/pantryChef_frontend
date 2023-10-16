@@ -1,59 +1,63 @@
 <template>
-    <nav><NavBar /></nav>
-    <div class="individual-container">
-      <div class="editor">
-        <router-link :to="`/recipes/edit/${recipe._id}`">
-          <myBtn v-if="isAdmin" buttonText="EDIT"/>
-        </router-link>
-        <myBtn v-if="isAdmin" @click="deleteRecipe" buttonText="DELETE" />
-      </div>
-        <div class="wrapper">
-            <div class="grid-item">
-                <img :src="recipe.image" :alt="recipe.title" class="recipe-image">
-                <div class="overlay">
-                    <div class="title">{{ recipe.title }}</div>
-                </div>
-            </div>
-            <div class="recipe-body">
-                <p class="description">
-                    <strong>{{ recipe.description }}</strong> 
-                </p>
-                <div class="details">
-                <p class="detail-item">
-                    <strong>Cooking Time:</strong> 
-                    <font-awesome-icon icon="fa-solid fa-clock" /> <span class="info">{{ recipe.time }}</span>
-                </p>
-                <p class="detail-item">
-                    <strong>Servings:</strong> 
-                    <font-awesome-icon icon="fa-solid fa-user-group" /> <span class="info">{{ recipe.people }}</span>
-                </p>
-                <p class="detail-item">
-                    <strong>Calories:</strong> 
-                    <font-awesome-icon icon="fa-solid fa-fire-flame-curved" /> <span class="info">{{ recipe.calories }}</span>
-                </p>
-                <p class="detail-item">
-                    <strong>Difficulty:</strong>
-                    <font-awesome-icon icon="fa-solid fa-gauge" /> <span class="info">{{ recipe.difficulty }}</span>
-                </p>
-            </div>
-                <h4 class="section-title">Ingredients:</h4>
-                <ul class="ingredient-list">
-                    <li v-for="(ingredient, index) in recipe.ingredients" :key="index">{{ ingredient }}</li>
-                </ul>
-                <div class="recipe-instructions">
-                    <p class="instructions">
-                        <strong>Instructions:</strong> 
-                        <ol>
-                            <li v-for="(step, index) in recipe.instructions" :key="index">
-                            {{ step.trim() }}
-                            </li>
-                        </ol>
-                    </p>
-                </div>
-            </div>
+<NavBar />
+<div class="individual-container">
+  <div class="editor">
+    <router-link :to="`/recipes/edit/${recipe._id}`">
+      <myBtn v-if="isAdmin" buttonText="EDIT"/>
+    </router-link>
+    <myBtn v-if="isAdmin" @click="deleteRecipe" buttonText="DELETE" />
+  </div>
+  <div class="wrapper">
+    <div class="grid-item">
+        <img :src="recipe.image" :alt="recipe.title" class="recipe-image">
+        <div class="overlay">
+            <div class="title">{{ recipe.title }}</div>
         </div>
     </div>
-  </template>  
+    <div class="recipe-body">
+        <p class="description">
+            <strong>{{ recipe.description }}</strong> 
+        </p>
+        <div class="details">
+          <p class="detail-item">
+              <strong>Cooking Time:</strong> 
+              <font-awesome-icon icon="fa-solid fa-clock" /> 
+              <span class="info">{{ recipe.time }}</span>
+          </p>
+          <p class="detail-item">
+              <strong>Servings:</strong> 
+              <font-awesome-icon icon="fa-solid fa-user-group" /> 
+              <span class="info">{{ recipe.people }}</span>
+          </p>
+          <p class="detail-item">
+              <strong>Calories:</strong> 
+              <font-awesome-icon icon="fa-solid fa-fire-flame-curved" /> 
+              <span class="info">{{ recipe.calories }}</span>
+          </p>
+          <p class="detail-item">
+              <strong>Difficulty:</strong>
+              <font-awesome-icon icon="fa-solid fa-gauge" /> 
+              <span class="info">{{ recipe.difficulty }}</span>
+          </p>
+        </div>
+        <h4 class="section-title">Ingredients:</h4>
+        <ul class="ingredient-list">
+            <li v-for="(ingredient, index) in recipe.ingredients" :key="index">{{ ingredient }}</li>
+        </ul>
+        <div class="recipe-instructions">
+          <p class="instructions">
+            <strong>Instructions:</strong> 
+            <ol>
+                <li v-for="(step, index) in recipe.instructions" :key="index">
+                {{ step.trim() }}
+                </li>
+            </ol>
+          </p>
+        </div>
+      </div>
+  </div>
+</div>
+</template>  
 
     <script>
     import { useRoute } from 'vue-router'
@@ -135,9 +139,15 @@
     justify-content: center;
   }
   
-  .detail-item {
-    margin: 10px 20px;
-  }
+.detail-item {
+margin: 10px 20px;
+transition: 0.3s ease-in-out;
+cursor: default;
+}
+.detail-item:hover {
+margin: 10px 20px;
+scale: 1.2;
+}
   
   .recipe-body {
     text-align: left;
@@ -184,7 +194,7 @@
     transition: 0.4s ease-in-out;
     filter: grayscale(0%);
     box-shadow: 0 5px 10px rgba(0,0,0,0.50), 0 35px 22px rgba(0,0,0,0.16);
-    max-width: 28vw;
+    max-width: 40vw;
     height: 30vh;
 }
 .grid-item:hover {

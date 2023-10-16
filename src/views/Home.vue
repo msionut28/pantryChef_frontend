@@ -7,8 +7,10 @@
             <img :src="recipe.image" :alt="recipe.title">
             <div :class="{ 'overlay': true, 'recipe': index === 4 }" @click="redirectToRecipeGenerator(index)">
                 <router-link  :to="'/recipes/' + recipe._id">
-                <div class="title">{{ recipe.title }}</div>
-                <p class="description">{{ recipe.description }}</p>
+                    <div class="title">
+                        {{ recipe.title }}
+                    </div>
+                    <p class="description">{{ recipe.description }}</p>
                 </router-link>
             </div>
         </div>

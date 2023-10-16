@@ -1,23 +1,23 @@
 <template>
-    <div class="wrapper">
-        <div class="login-wrapper">
-            <div class="login-form">
-                <h3>WELCOME</h3>
-                <div class="credential">
-                    <input class="form-control" type="text" placeholder="Username" v-model="userName">
-                    <span class="icon"><font-awesome-icon icon="fa-solid fa-user" /></span>
-                </div>
-                <div class="credential">
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password">
-                    <span class="icon"><font-awesome-icon icon="fa-solid fa-key" /></span>
-                </div>
-                <myBtn id="submit" @click="submitLogin" buttonText="SUBMIT" />
+<div class="wrapper">
+    <div class="login-wrapper">
+        <div class="login-form">
+            <h3>WELCOME</h3>
+            <div class="credential">
+                <input class="form-control" type="text" placeholder="Username" v-model="userName">
+                <span class="icon"><font-awesome-icon icon="fa-solid fa-user" /></span>
             </div>
-            <div class="google-login">
-                <GoogleLogin class="gauth" :callback="callback" />
+            <div class="credential">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password">
+                <span class="icon"><font-awesome-icon icon="fa-solid fa-key" /></span>
             </div>
+            <myBtn id="submit" @click="submitLogin" buttonText="SUBMIT" />
+        </div>
+        <div class="google-login">
+            <GoogleLogin class="gauth" :callback="callback" />
         </div>
     </div>
+</div>
 </template>
 
 <script>

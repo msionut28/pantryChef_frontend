@@ -14,11 +14,17 @@
       <div class="ingredients-list">
         <h3>Ingredients List</h3>
         <ul>
-          <li v-for="(ingredient, index) in ingredients" :key="index">{{ ingredient }} <myBtn type="button" buttonText="DELETE" @click="removeIngredient" /></li> 
+          <li v-for="(ingredient, index) in ingredients" :key="index">
+            {{ ingredient }} 
+            <myBtn type="button" buttonText="DELETE" @click="removeIngredient" />
+          </li> 
         </ul>
       </div>
       <div class="footer">
-      <p><input type="text" v-model="newIngredient" name="difficulty" class="form-control" placeholder="Add Ingredient"><myBtn type ="button" buttonText="Add" @click="addIngredient" /></p>
+      <p>
+        <input type="text" v-model="newIngredient" name="difficulty" class="form-control" placeholder="Add Ingredient">
+        <myBtn type ="button" buttonText="Add" @click="addIngredient" />
+      </p>
       <textarea class="form-control" v-model="recipe.description" name="description" placeholder="Recipe Description"></textarea><br>
       <textarea class="form-control" v-model="recipe.instructions" name="instructions" placeholder="Recipe Instructions"></textarea>
       <p><input type="file" name="image" @change="handleImageUpload" class="form-control" ref="fileInput"><br></p>
@@ -40,10 +46,10 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="resetForm">Close</button>
         </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 </template>
 <script>

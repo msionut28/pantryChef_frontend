@@ -1,35 +1,72 @@
 <template>
-<nav><NavBar /></nav>
-<div class="recipe-wrapper">
-    <input v-if="isEditingTitle" v-model="title" type="text" class="form-control" id="title-input" placeholder="TYPE IN A TITLE AND HIT ENTER.." @keyup.enter="saveTitle"/>
-    <div v-else>
-      <h3>
-        {{ title }}
-        <myBtn @click="edit" buttonText="EDIT" />
-      </h3> 
-    </div>
-  <input class="form-control" id="ingredients-add" v-model="newItem" @keyup.enter="addItem" placeholder="Add an item">
-  <div class="verticalLines">
-        <ul class="ingredients">
-            <li v-for="(item, index) in createdRecipe" :key="index">
-            {{ item }}
-            <myBtn @click="removeItem(index)" buttonText="REMOVE" />
-            </li>
-            <li></li>
-            <li></li>
-            <li></li>
-              <myBtn @click="addRecipe" buttonText="SAVE" v-if="createdRecipe.length> 0 && !recipeGenerated && !loading" />
-            <button class="btn btn-primary" type="button" id="loading" disabled v-if="loading">
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Loading...
-              </button>
-            <myBtn v-if="recipeGenerated" @click="viewRecipe" buttonText="SHOW" />
-        </ul>
-      </div>
-      <div class="chat-box">
-        <p class="message">{{ description }}</p>
-      </div>
-</div>
+<v-app class="generator">
+  <NavBar />
+  <v-container class="recipe-wrapper">
+    <v-card outlined class="elevation-6">
+      <h2 class="text-h2">Create a Recipe</h2>
+      <v-card-title>
+        <v-text-field
+          v-if="isEditingTitle"
+          v-model="title"
+          label="Title"
+          @keyup.enter="saveTitle"
+        ></v-text-field>
+        <div v-if="!isEditingTitle">
+          <span class="title">{{ title }}</span>
+          <v-btn @click="edit" text color="primary">EDIT</v-btn>
+        </div>
+      </v-card-title>
+      <v-divider></v-divider>
+      <v-card-text>
+        <v-text-field
+          v-model="newItem"
+          label="Add an item"
+          @keyup.enter="addItem"
+        ></v-text-field>
+        <v-list>
+          <v-list-item
+            v-for="(item, index) in createdRecipe"
+            :key="index"
+          >
+            <v-list-item-title>{{ item }}</v-list-item-title>
+            <v-btn @click="removeItem(index)" text color="error" class="delete-button">
+              Remove
+            </v-btn>
+          </v-list-item>
+        </v-list>
+      </v-card-text>
+      <v-card-actions class="footer">
+        <v-btn
+          v-if="createdRecipe.length > 0 && !recipeGenerated && !loading"
+          @click="addRecipe"
+          color="success"
+          class="save-button"
+        >
+          Save
+        </v-btn>
+        <v-btn
+          class="btn-primary"
+          id="loading"
+          v-if="loading"
+          disabled
+        >
+          <v-progress-circular indeterminate size="20" color="white"></v-progress-circular>
+          Loading...
+        </v-btn>
+        <myBtn
+          v-if="recipeGenerated"
+          @click="viewRecipe"
+          buttonText="SHOW"
+        />
+      </v-card-actions>
+    </v-card>
+  </v-container>
+  <v-container class="chat-box">
+    <v-card>
+      <v-card-text class="message">{{ description }}</v-card-text>
+    </v-card>
+  </v-container>
+</v-app>
 </template>
 
 <script>
@@ -138,51 +175,46 @@ export default {
 </script>
 
 <style scoped>
-.recipe-wrapper{
+.delete-button{
+    font-size: 12px;
+    color: lab(53% 70 60);
+    width: 5vw;
+}
+.generator{
+  background-color: lab(93% 0 0);
+}
+.recipe-wrapper {
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+}
+
+.text-h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.btn-primary {
+  font-size: 12px;
+  background-color: darkgrey;
+  border: none;
+  color: white;
+}
+
+.chat-box {
+  text-align: center;
+}
+
+.message {
+  font-size: 18px;
+}
+.save-button{
+  background-color: lab(93% 0 0);
+}
+.footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  margin: auto;
-  width: 30vw;
-  border: 1px solid black;
-}
-.ingredients { 
-  color: #858585; 
-  font-size: 21px; 
-  padding: 0; 
-  width: 30vw; 
-  border: 2px solid #cecece;  
-} 
-.ingredients li { 
-  list-style: none; 
-  border-bottom: 2px dotted #cecece; 
-  text-indent: 20px; 
-  height: auto;  
-  padding: 10px; 
-}
-.ingredients li:hover { 
-  background-color: #f5f5f5; 
-} 
-.verticalLines {
-  display: flex;  
-  height: auto; 
-  float: left;
-} 
-button {
-  font-size: 12px;
-}
-.save {
-  width: 30%;
-  font-size: 14px;
-}
-.editor, .editor:active, .editor:hover{
-  background-color: darkgray;
-  border: none;
-}
-#loading, #loading:hover{
-  background-color: darkgrey;
-  border: none;
 }
 </style>

@@ -4,6 +4,7 @@ import RecipeAdd from '../views/RecipeAdd'
 import RecipeCreator from '../views/RecipeCreator'
 import IndividualRecipe from '../views/IndividualRecipe'
 import EditRecipe from '../views/EditRecipe.vue'
+import RandomRecipe from '../views/RandomRecipe.vue'
 import NavBar from '../components/NavBar'
 import LandingPage from '../views/LandingPage.vue'
 import LoginPage from '../views/LoginPage.vue'
@@ -43,6 +44,11 @@ const routes = [
         path: '/recipes/edit/:id',
         component: EditRecipe,
         meta: { requiresAdmin: true }
+    },
+    {
+        name: 'RandomRecipe',
+        path: '/randomrecipe',
+        component: RandomRecipe
     },
     {
         name: 'LandingPage',

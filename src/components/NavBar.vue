@@ -10,10 +10,12 @@
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                     <!-- <li v-if="isLoggedIn" class="nav-item">
                         <a class="nav-link" href="#">Profile <span class="visually-hidden">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Random Recipe</a>
                     </li> -->
+                    <li class="nav-item" v-if="isLoggedIn">
+                        <router-link :to="'/randomrecipe'">
+                            <a class="nav-link" href="#">Random Recipe</a>
+                        </router-link>
+                    </li>
                     <li v-if="isLoggedIn" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Recipes</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">

@@ -9,7 +9,7 @@
         <p><input type="text" v-model="recipe.time" name="time" class="form-control" placeholder="Cooking Time"><br></p>
         <p><input type="text" v-model="recipe.people" name="people" class="form-control" placeholder="Servings"><br></p>
         <p><input type="text" v-model="recipe.calories" name="calories" class="form-control" placeholder="Calories"><br></p>
-        <p><input type="text" v-model="recipe.difficulty" placeholder="Difficulty" class="form-control" name="difficulty"></p>
+        <p><input type="text" v-model="recipe.difficulty" name="difficulty" class="form-control" placeholder="Difficulty"></p>
       </div>
       <div class="ingredients-list">
         <h3>Ingredients List</h3>
@@ -27,7 +27,7 @@
       </p>
       <textarea class="form-control" v-model="recipe.description" name="description" placeholder="Recipe Description"></textarea><br>
       <textarea class="form-control" v-model="recipe.instructions" name="instructions" placeholder="Recipe Instructions"></textarea>
-      <p><input type="file" name="image" @change="handleImageUpload" class="form-control" ref="fileInput"><br></p>
+      <p><input type="text" v-model="recipe.image" name="image" placeholder="Link to your Image"></p>
       <p><button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#modalId" @click.prevent="addRecipe">Add new recipe</button></p>
     </div>
   </form>
@@ -89,7 +89,7 @@ export default {
   formData.append("difficulty", this.recipe.difficulty)
   formData.append("description", this.recipe.description)
   formData.append("instructions", this.recipe.instructions)
-  formData.append("image", this.$refs.fileInput.files[0])
+  formData.append("image", this.recipe.image)
   this.ingredients.forEach((ingredient, index) => {
     formData.append(`ingredients[${index}]`, ingredient)
   })
@@ -110,16 +110,7 @@ export default {
     console.error("Error:", error)
   });
 },
-  openFileInput() {
-          this.$refs.fileInput.click()
-      },
-  handleImageUpload(event) {
-      const file = event.target.files[0];
-      if (file) {
-          this.recipe.image = '/assets/' + file.name
-      }
-  },
-    resetForm() {
+  resetForm: function() {
       this.recipe.title = '',
       this.recipe.time = '',
       this.recipe.people = '',

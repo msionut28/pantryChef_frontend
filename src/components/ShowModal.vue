@@ -68,6 +68,7 @@
 
 <script>
 import { decodeCredential } from 'vue3-google-login';
+const backendApi = process.env.BACKEND_API
 export default{
     name: 'ShowModal',
     methods: {
@@ -75,7 +76,7 @@ export default{
         const userData = decodeCredential(this.$cookies.get('user_session'))
         this.userName = userData.given_name
         const data = { membership: parseInt(newMembership) }
-        await fetch(`http://localhost:4000/users/${this.userName}`, {
+        await fetch(`${backendApi}/users/${this.userName}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

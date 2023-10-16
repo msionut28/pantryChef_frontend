@@ -72,7 +72,7 @@ export default {
 }
 .description{
     color: rgba(255, 223, 186, 0.4);
-    font-family: 'Raleway';
+    font-family: 'raleway';
     font-size: 20px;
     font-weight: 500;
     letter-spacing: 0.15em;

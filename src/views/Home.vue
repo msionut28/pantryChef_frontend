@@ -19,7 +19,8 @@
 </template>
 
 <script>
-const API_URL = 'http://localhost:4000/recipes'
+const backendApi = process.env.VUE_APP_BACKEND_API
+const API_URL = `${backendApi}/recipes`
 import NavBar from '../components/NavBar.vue';
 export default {
     name: 'HomePage',

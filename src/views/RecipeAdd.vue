@@ -55,6 +55,7 @@
 <script>
 import NavBar from '../components/NavBar.vue';
 import myBtn from '../components/SingleButton.vue'
+const backendApi = process.env.VUE_APP_BACKEND_API
 
 export default {
   name: 'RecipeAdd',
@@ -93,7 +94,7 @@ export default {
     formData.append(`ingredients[${index}]`, ingredient)
   })
 
-  fetch('http://localhost:4000/recipes/add', {
+  fetch(`${backendApi}/recipes/add`, {
     method: "POST",
     body: formData,
   })

@@ -53,8 +53,9 @@
   <script>
 //   import RecipeModal from '../components/RecipeModal.vue'
   import NavBar from '../components/NavBar.vue';
-  const USER_URL = 'http://localhost:4000/users'
-  const RECIPES_URL = 'http://localhost:4000/generated'
+  const backendApi = process.env.VUE_APP_BACKEND_API
+  const USER_URL = `${backendApi}/users`
+  const RECIPES_URL = `${backendApi}/generated`
   export default {
     name: 'UserRecipe',
     data: () => ({

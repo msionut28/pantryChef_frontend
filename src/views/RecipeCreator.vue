@@ -72,6 +72,7 @@
 <script>
 import NavBar from '../components/NavBar.vue';
 import myBtn from '../components/SingleButton.vue'
+const backendApi = process.env.VUE_APP_BACKEND_API
 
 export default {
   name: 'RecipeCreate',
@@ -129,7 +130,7 @@ export default {
   addRecipe: function () {
     this.loading = true
     console.log(`New recipe ${this.title}`);
-    fetch('http://localhost:4000/create', {
+    fetch(`${backendApi}/create`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -153,14 +154,14 @@ export default {
   viewRecipe: async function(){
     console.log(this.recipeId)
     console.log(this.description);
-    const res = await fetch(`http://localhost:4000/generated/${this.recipeId}`)
+    const res = await fetch(`${backendApi}/generated/${this.recipeId}`)
     const recipe = await res.json()
     this.description = recipe.description
     this.updateUserRecipe(this.userName)
   },
   updateUserRecipe: async function(user){
     console.log(`${this.recipeId}`);
-    await fetch(`http://localhost:4000/users/${user}/addrecipe`, {
+    await fetch(`${backendApi}/users/${user}/addrecipe`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

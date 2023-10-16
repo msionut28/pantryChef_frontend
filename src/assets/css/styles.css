@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap');
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -10,6 +9,18 @@
     background-position: 0% 50%;
   }
 }
+@font-face {
+    font-family: 'fjallaone';
+    src: URL('../fonts/fjalla/FjallaOne-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'poppins';
+    src: url('../fonts/poppins/Poppins-Regular.ttf') format('truetype');
+}
+  @font-face {
+    font-family: 'raleway';
+    src: url('../fonts/raleway/static/Raleway-Italic.ttf') format('truetype');
+}
 *, *::before, *::after {
 box-sizing: border-box;
 }
@@ -18,14 +29,6 @@ margin: 0;
 padding: 0;
 }
 body {
-    @font-face {
-        font-family: 'fjallaone';
-        src: URL('../fonts/fjalla/FjallaOne-Regular.ttf') format('truetype');
-      }
-      @font-face {
-        font-family: 'poppins';
-        src: url('../fonts/poppins/Poppins-ThinItalic.ttf') format('truetype');
-    }
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     

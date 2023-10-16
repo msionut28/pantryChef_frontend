@@ -69,7 +69,8 @@
 import NavBar from '../components/NavBar.vue'
 // import myBtn from '@/components/SingleButton.vue';
 import { useRoute } from 'vue-router';
-const API_URL = 'http://localhost:4000/recipes'
+const backendApi = process.env.VUE_APP_BACKEND_API
+const API_URL = `${backendApi}/recipes`
 
 
 export default {

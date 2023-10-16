@@ -1,6 +1,6 @@
 // import router from '@/router';
 import { decodeCredential, googleLogout } from 'vue3-google-login';
-
+const backendApi = process.env.VUE_APP_BACKEND_API
 export const handleLogin =  async function (response, store, cookies) {
     store.dispatch('login')
     const userData = decodeCredential(response.credential)
@@ -12,7 +12,7 @@ export const handleLogin =  async function (response, store, cookies) {
     cookies.set(cookies.set('username', userData.given_name))
 
     try{
-        const response = await fetch('http://localhost:4000/useradd', {
+        const response = await fetch(`${backendApi}/useradd`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -22,7 +22,7 @@ export const handleLogin =  async function (response, store, cookies) {
                 lastLogin: currentTime
             })
         })
-        const userResponse = await fetch('http://localhost:4000/users', {
+        const userResponse = await fetch(`${backendApi}/users`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -61,7 +61,7 @@ export const handleLogout = function (store, cookies, router) {
 export async function userPassLogin(userName, password, store, cookies, router){
     try{
         console.log('trying to fetch data')
-        const response = await fetch('http://localhost:4000/login', {
+        const response = await fetch(`${backendApi}/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

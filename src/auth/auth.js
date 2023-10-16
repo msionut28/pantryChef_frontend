@@ -12,7 +12,7 @@ export const handleLogin =  async function (response, store, cookies) {
     cookies.set(cookies.set('username', userData.given_name))
 
     try{
-        const response = await fetch(`${backendApi}/useradd`, {
+        await fetch(`${backendApi}/useradd`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -32,6 +32,7 @@ export const handleLogin =  async function (response, store, cookies) {
         const user = userData.find((user)=> user.userName === userName)
         if (user) {
             userId = user._id
+            console.log(userId);
             const membership = parseInt(user.membership)
             if (membership === 0 || null){
                 cookies.set('new_user', true)

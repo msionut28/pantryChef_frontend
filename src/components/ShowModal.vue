@@ -84,7 +84,7 @@ export default{
       });
 
       if (response.ok) {
-        const responseData = await response.json()
+        await response.json()
         this.$cookies.remove('new_user')
         await new Promise(resolve => setTimeout(resolve, 1000))
         location.reload();

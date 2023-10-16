@@ -85,8 +85,8 @@ export default{
         .then((data) => {
             console.log(data.message);
         })
-        .then(location.reload())
         .then(this.$cookies.remove('new_user'))
+        // .then(location.reload())
         .catch((error) => {
             console.error(error);
         });

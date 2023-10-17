@@ -71,7 +71,7 @@ const backendApi = process.env.VUE_APP_BACKEND_API
 export default{
     name: 'ShowModal',
     methods: {
-        async updateMember(newMembership){
+        async updateMember(newMembership, membership){
         const userName = this.$cookies.get('username')
         const data = { membership: parseInt(newMembership) }
         try {

@@ -1,6 +1,6 @@
 ## PantryChef
 
-PantryChef is a Blog type Web Application that consumes exeternal APIs in order to fetch recipes for our users, as well as an OpenAI powered system of automatically generating new custom-tailored recipes for each individual user based on the entries of items in a list. This Web App uses Vue.js library for frontend development, an Express.js based backend and a NoSQL database - more precisely, MongoDB. Thus, this app uses a full MEVN environment.
+PantryChef is a Blog type Web Application that consumes exeternal APIs in order to fetch recipes for our users, as well as an **OpenAI powered system** of automatically generating new custom-tailored recipes for each individual user based on the entries of items in a list. This Web App uses **Vue.js** library for frontend development, an **Express.js** based backend and a **NoSQL Database** - more precisely, **MongoDB**. Thus, this app uses a full **MEVN** environment.
 
 ## LOCAL DEVELOPMENT
 

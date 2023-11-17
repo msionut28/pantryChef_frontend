@@ -2,6 +2,15 @@
 
 PantryChef is a Blog type Web Application that consumes exeternal APIs in order to fetch recipes for our users, as well as an **OpenAI powered system** of automatically generating new custom-tailored recipes for each individual user based on the entries of items in a list. This Web App uses **Vue.js** library for frontend development, an **Express.js** based backend and a **NoSQL Database** - more precisely, **MongoDB**. Thus, this app uses a full **MEVN** environment.
 
+## DEPLOYMENT AND SCREENSHOTS
+
+The deployed v1.0 of the website can be accessed [here](https://pantrychef-ga.netlify.app).
+It is currently up to date with the repository found on GitHub
+
+```
+PLEASE INSERT FUTURE SCREENSHOTS HERE AS WELL AS DISCUSSING THE SOURCE CODE
+```
+
 ## LOCAL DEVELOPMENT
 
 1. Clone this repo, as well as the [backend repo](https://github.com/msionut28/pantryChef_backend) and follow the steps below for both folders.

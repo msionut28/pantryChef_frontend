@@ -4,7 +4,7 @@ const backendApi = process.env.VUE_APP_BACKEND_API
 export const handleLogin =  async function (response, store, cookies) {
     store.dispatch('login')
     const userData = decodeCredential(response.credential)
-    const timestamp = Date.now()
+    const timestamp = Date.now() 
     const currentTime = new Date(timestamp)
     const userName = userData.given_name
     let userId = 1

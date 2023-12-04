@@ -63,7 +63,7 @@ It is currently up to date with the repository found on GitHub
 ![Website Gif Presentation](/src/assets/github/createpost.png)
 
 ### POST EDITOR PAGE - ADMIN ONLY
-![Website Gif Presentation](/src/assets/github/randomrecipe.png)
+![Website Gif Presentation](/src/assets/github/editpost.png)
 
 ### GIF PRESENTATION OF THE WEBSITE'S FEATURES
 ![Website Gif Presentation](/src/assets/github/pantrygif.gif)

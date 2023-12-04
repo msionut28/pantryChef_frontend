@@ -43,6 +43,6 @@ The deployed v1.0 of the website can be accessed [here](https://pantrychef-ga.ne
 It is currently up to date with the repository found on GitHub
 
 ## 5. SCREENSHOTS AND GIFS 📸
-
+### GIF PRESENTATION OF THE WEBSITE'S FEATURES
 ![Website Gif Presentation](/src/assets/github/pantrygif.gif)
 

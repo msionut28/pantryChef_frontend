@@ -2,39 +2,40 @@
 
 ## 1. BRIEF INTRO 📖
 
-PantryChef is a Blog type Web Application that consumes exeternal APIs in order to fetch recipes for our users, as well as an **OpenAI powered system** of automatically generating new custom-tailored recipes for each individual user based on the entries of items in a list. This Web App uses **Vue.js** library for frontend development, an **Express.js** based backend and a **NoSQL Database** - more precisely, **MongoDB**. Thus, this app uses a full **MEVN** environment.
+PantryChef is a Blog-type Web Application that consumes external APIs to fetch recipes for our users. It also features an **OpenAI-powered system** for automatically generating new custom-tailored recipes for each individual user based on the entries of items in a list. This Web App uses the **Vue.js** library for frontend development, an **Express.js**-based backend, and a **NoSQL Database**—more precisely, **MongoDB**. Thus, this app operates in a full **MEVN** environment.
 
 ## 2. ABOUT THE WEB APP 🕸
-While studying at **GeneralAssembly**, for my second unit I had been given a project to deliver within one week. It was a solo project and had the following requirements:
 
-+ **CRUD FUNCTIONAL**
-+ **Vue.js framework for frontend development**
-+ **Node.js and Express for backend development**
-+ **MongoDB database**
-+ **Consume at least one API**
-+ **GoogleAuth for login and route protection**
+While studying at **General Assembly**, for my second unit, I had been given a project to deliver within one week. It was a solo project and had the following requirements:
+
+- **CRUD FUNCTIONAL**
+- **Vue.js framework for frontend development**
+- **Node.js and Express for backend development**
+- **MongoDB database**
+- **Consume at least one API**
+- **GoogleAuth for login and route protection**
 
 All of these requirements have been met as they follow:
-+ Admin can **Create, Read, Update and Delete** blog posts
-+ **Vue.js** and **Express** were used in the development of the app
-+ **MongoDB database** was linked to PantryChef
-+ PantryChef consumes 2 different APIs: **OpenAI API** for recipe generating and an external API that fetches data for **Random Recipes**
-+ In order to gain access to all of the website's features, a user must be logged in which can be done by either using a Google account - **GoogleAuth** or even by registering with an username and a password - which they are then stored in the MongoDB database, password being encrypted by **Bcrypt** - and later on can be used as credentials for logging in
+- Admin can **Create, Read, Update and Delete** blog posts
+- **Vue.js** and **Express** were used in the development of the app
+- **MongoDB database** was linked to PantryChef
+- PantryChef consumes 2 different APIs: **OpenAI API** for recipe generating and an external API that fetches data for **Random Recipes**
+- In order to gain access to all of the website's features, a user must be logged in which can be done by either using a Google account - **GoogleAuth** or even by registering with an username and a password - which they are then stored in the MongoDB database, password being encrypted by **Bcrypt** - and later on can be used as credentials for logging in
 
 ## 3. LOCAL DEVELOPMENT 🛠
 
-+ Clone this repo, as well as the [backend repo](https://github.com/msionut28/pantryChef_backend) and follow the steps below for both folders.
-+ Run a ``` npm i ``` in order to get all of the dependencies locally installed.
-+ Update your ```.env``` file according to the ```.env.example``` so you can get the full experience.
-+ Run the development server using one of the following commands depending on the OS used:
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Clone this repo, as well as the [backend repo](https://github.com/msionut28/pantryChef_backend) and follow the steps below for both folders.
+- Run `npm i` to get all of the dependencies locally installed.
+- Update your `.env` file according to the `.env.example` so you can get the full experience.
+- Run the development server using one of the following commands depending on the OS used:
+  ```bash
+  npm run dev
+  # or
+  yarn dev
+  # or
+  pnpm dev
+  # or
+  bun dev
 ```
 + Open [http://localhost:8080](http://localhost:8080) with your browser to see the result.
 ## 4. DEPLOYMENT 🚀
@@ -87,7 +88,7 @@ It is currently up to date with the repository found on GitHub
 
 ### LOGGING IN AND OUT
 
-For logging in, I have used ```Vue3 Google Login``` package and used ```Vuex Store``` to store the state of an user whether it is logged in or not as well as checking if it's an admin or not. Inside my ```store.js```, I created a new store with ```state, mutations, actions and getters``` that were granting the access for the user. Inside ```auth.js```, the following snippet can be found: 
+For logging in, I used the ```Vue3 Google Login``` package and ```Vuex Store``` to store the user's state, whether they are logged in or not, and to check if they are an admin or not. Inside my store.js, I created a new ```store``` with ```state, mutations, actions, and getters``` that grant access to the user. Inside auth.js, the following snippet can be found:
 
 ```
 export const handleLogin =  async function (response, store, cookies) {
@@ -101,7 +102,7 @@ export const handleLogin =  async function (response, store, cookies) {
 ...
 }
 ```
-These lines are quite self-explanatory, whenever a user's using the GoogleAuth to log in, the function sets the state of logged in to a true boolean, it then decodes the credentials that Google sends in so data such as First/ Last Name, email, full name can be used. It then creates a timestamp that will be later on used for storing additional data in the database and sets info inside the cookies.
+These lines are self-explanatory. When a user logs in using GoogleAuth, the function sets the state of being logged in to a true boolean. It then decodes the credentials that Google sends in, allowing data such as First/Last Name, email, and full name to be used. It then creates a timestamp used for storing additional data in the database and sets info inside the cookies.
 
 ```
 export const handleLogin =  async function (response, store, cookies) {
@@ -146,7 +147,7 @@ export const handleLogin =  async function (response, store, cookies) {
 }
 ```
 
-This bit of code right here sends the username and the timestamp to the database and it then checks if the user already exists and if so, it will only update the last login. It also checks whether the user has already chosen a membership and if that's not the case, then a text pops up on the navbar and when clicked, it pops up a model where a user can choose its membership.
+This bit of code sends the username and timestamp to the database, then checks if the user already exists. If so, it only updates the last login. It also checks if the user has chosen a membership, and if not, a text shows up on the navbar, popping up a modal on click where a user can choose their membership.
 
 ```
 export const handleLogout = function (store, cookies, router) {
@@ -159,7 +160,7 @@ export const handleLogout = function (store, cookies, router) {
 }
 ```
 
-For logging out, I have created this function that calls in the ```googleLogout``` function from ```Vue3 Google Login``` and it then removes the cookies and sets the state of logged in to false as well as redirecting to home page.
+For logging out, I created this function that calls the ```googleLogout``` function from ```Vue3 Google Login```, removes the cookies, sets the state of being logged in to false, and redirects to the home page.
 
 ```
 export async function userPassLogin(userName, password, store, cookies, router){
@@ -197,7 +198,7 @@ export async function userPassLogin(userName, password, store, cookies, router){
     }
 }
 ```
-This function sends the credentials to the backend and then checks if the credentials match the data stored in the database, and if that's the case, it then proceeds on to checking if the user is admin or not and setting the appropriate states for each scenario.
+This function sends the credentials to the backend, then checks if the credentials match the data stored in the database. If that's the case, it checks if the user is an admin or not and sets the appropriate states for each scenario.
 
 ### RANDOM RECIPE PAGE
 
@@ -220,7 +221,7 @@ export default {
 }
 ```
 
-First things first, it fetches the data from the API_URL that is stored inside ```.env``` and sets it to the empy object declared inside the data. Once that's done, the method ```getIngredients``` is created
+First, it fetches the data from the ```API_URL``` stored inside ```.env``` and sets it to the empty object declared inside the data. Once done, the method ```getIngredients``` is created.
 
 ```
 export default {
@@ -244,9 +245,9 @@ export default {
   ...
 }
 ```
-It sets a limit of maximum 20 ingredients in order to avoid really long lists, as I have found that some of the recipes in this API included ingredients such as : "salt", "pepper", "sunflower oil" and so on and I think it was unnecessary having so many ingredients listed as a matter of styling.
+It sets a limit of a maximum of 20 ingredients to avoid long lists. Some recipes in this API included common ingredients such as "salt," "pepper," "sunflower oil," and so on, and I found it unnecessary to list so many ingredients as a matter of styling.
 
-The method is called inside the ```<template>``` of the page
+The method is called inside the ```<template>``` of the page.
 
 ```
 <template>
@@ -300,15 +301,15 @@ export default {
 }
 ```
 
-This method gets all the ingredients that the use has typed in and then sends it to the backend where the actual **OpenAI API** integration takes place and as a response, it gets the generated response by **OpenAI**.
+This method gets all the ingredients that the user has typed in, then sends it to the backend where the actual **OpenAI API** integration takes place. As a response, it gets the generated response by **OpenAI**.
 
 **TO BE FURTHER EDITED**
 
 ## 8. CHALLENGES 🧩
 
-+ Personally, the biggest challenge for me was to integrate the **OpenAI API** in my project. It already was a lot of information for me to deal with as I was only 5 weeks in proper coding and at that specific point, I felt like this was a really big challenge. Making the actual request to the OpenAI was difficult as I had to understand the purpose of every single ```key & value``` sent in the object to OpenAI and the documentation on their website was not too deep in to details. 
++ Personally, the biggest challenge for me was to integrate the **OpenAI API** into my project. It was already a lot of information for me to deal with as I was only 5 weeks into proper coding, and at that specific point, I felt like this was a really big challenge. Making the actual request to OpenAI was difficult as I had to understand the purpose of every single ```key & value``` sent in the object to OpenAI, and the documentation on their website was not too deep into details.
 
-+ Another challenge that I faced was the integration of **Registration** and **Log In** by **Username** and **Password** as this was out of our course's curriculum, so besides making sure I applied everything I have previously learned over the past 2 weeks, I even went beyond the requirements and implemented this feature, which, personally I think it was a nice touch. I am way more comfortable now working and handling passwords and sensitive information.
++ Another challenge that I faced was the integration of **Registration** and **Log In** by **Username** and **Password** as this was outside our course's curriculum. So, besides making sure I applied everything I had previously learned over the past 2 weeks of our second unit, I even went beyond the requirements and implemented this feature, which, personally, I think was a nice touch. I am way more comfortable now working and handling passwords and sensitive information.
 
 + Deployment was another challenge, as it was my first proper deploy. I have previously used GitHub for deploying my [Battleship Game](https://msionut28.github.io/Battleships-Project/), but this time was different as more complex techonology had to be used in order to make sure that the backend and frontend were properly handled. I have used **Netlify** in order to publish my website.
 
@@ -316,13 +317,13 @@ This method gets all the ingredients that the use has typed in and then sends it
 
 + One bug that I am currently aware of is that whenever a user is clicking the delete button to remove an already generated recipe, the modal with recipe's details pops up even though it shouldn't.
 
-+ Sometimes, logged in state and ```membership === 0``` does not accordingly update, so I had to use ```location.reload()``` in order to fix that, but as it is not good practice, I still consider it a bug.
++ Sometimes, the **logged-in** state and ```membership === 0``` do not update accordingly. I had to use ```location.reload()``` to fix that, but as it is not good practice, I still consider it a bug.
 
 + CSS styling is not always working as intended on **Safari** browsers. At the time, I have no clue why this is happening, but I will definitely fix it.
 
 ## 10. FUTURE IMPROVEMENTS 🌱
 
-+ Share button integration, so users will be able to distribute their generated recipes with relatives and friends or even social media.
++ Share button integration, allowing users to distribute their generated recipes with relatives and friends or even on social media.
 
 + Limiting the number of recipes a user can generate based on the membership.
 
@@ -330,4 +331,4 @@ This method gets all the ingredients that the use has typed in and then sends it
 
 + Newsletter subscription where a user can pick how often should it recieve an email from **PantryChef** with a random recipe: **Daily, Weekly or Monthly**.
 
-+ Multilingual recipe generator: based on the language used when typing in the ingredients, the output will match the language.
++ Create recipes in different languages: The output language matches the one you use when typing in the ingredients.

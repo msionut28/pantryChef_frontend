@@ -28,7 +28,8 @@ All of these requirements have been met as they follow:
 - Run `npm i` to get all of the dependencies locally installed.
 - Update your `.env` file according to the `.env.example` so you can get the full experience.
 - Run the development server using one of the following commands depending on the OS used:
-  ```bash
+  ```
+  bash
   npm run dev
   # or
   yarn dev
@@ -36,8 +37,10 @@ All of these requirements have been met as they follow:
   pnpm dev
   # or
   bun dev
-```
-+ Open [http://localhost:8080](http://localhost:8080) with your browser to see the result.
+  ```
+  
+- Open [http://localhost:8080](http://localhost:8080) with your browser to see the result.
+
 ## 4. DEPLOYMENT 🚀
 
 The deployed v1.0 of the website can be accessed [here](https://pantrychef-ga.netlify.app).

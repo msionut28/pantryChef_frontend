@@ -43,6 +43,28 @@ The deployed v1.0 of the website can be accessed [here](https://pantrychef-ga.ne
 It is currently up to date with the repository found on GitHub
 
 ## 5. SCREENSHOTS AND GIFS 📸
+
+### HOME PAGE
+![Website Gif Presentation](/src/assets/github/homepage.png)
+
+### LOGIN PAGE
+![Website Gif Presentation](/src/assets/github/login.png)
+
+### RECIPE GENERATOR PAGE
+![Website Gif Presentation](/src/assets/github/recipegenerator.png)
+
+### GENERATED RECIPES PAGE
+![Website Gif Presentation](/src/assets/github/pastrecipe.png)
+
+### RANDOM RECIPE PAGE
+![Website Gif Presentation](/src/assets/github/randomrecipe.png)
+
+### POST CREATOR PAGE - ADMIN ONLY
+![Website Gif Presentation](/src/assets/github/createpost.png)
+
+### POST EDITOR PAGE - ADMIN ONLY
+![Website Gif Presentation](/src/assets/github/randomrecipe.png)
+
 ### GIF PRESENTATION OF THE WEBSITE'S FEATURES
 ![Website Gif Presentation](/src/assets/github/pantrygif.gif)
 
